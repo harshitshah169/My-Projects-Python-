@@ -2,14 +2,14 @@ import numpy as np
 import random
 
 GAME_OVER = False
-ATTEMPTS = 5
+ATTEMPTS = 6
 
 
 def if_lost(ATTEMPTS,GAME_OVER):
 
     if ATTEMPTS == 0:
-        print('The word was ' + str(word).upper())
-        print("\nYOU LOST, BETTER LUCK NEXT TIME!!!")
+        print('\nThe word was ' + str(word).upper())
+        print("YOU LOST, BETTER LUCK NEXT TIME!!!")
         GAME_OVER = True
 
     return GAME_OVER
@@ -24,7 +24,7 @@ def user_input(choice):
             hidden_word[a] = choice.casefold()
             change += 1
 
-    print(' '.join(hidden_word))
+    print('\n\n'+' '.join(hidden_word))
     return change
 
 
@@ -40,7 +40,7 @@ def if_won(hidden_word,GAME_OVER):
         return GAME_OVER
 
 
-ans = input("\nType 'y' to start the game : ").casefold()
+ans = input("Type 'y' to start the game : ").casefold()
 
 while ans == 'y':
 
@@ -49,6 +49,11 @@ while ans == 'y':
     word_len = len(word)
     hidden_word = list("_" * word_len)
     used = str(' ')
+
+    print("   O   ")
+    print("  /|\  ")
+    print("   |   ")
+    print("  / \  ")
 
     print("\nWELCOME TO HANGMAN!!")
     print(' '.join(hidden_word))
@@ -68,8 +73,39 @@ while ans == 'y':
         elif if_won(hidden_word,GAME_OVER):
             break
 
+        if ATTEMPTS == 6:
+            print("   O   ")
+            print("  /|\  ")
+            print("   |   ")
+            print("  / \  ")
+
+        elif ATTEMPTS == 5:
+            print("   O   ")
+            print("  /|\  ")
+            print("   |   ")
+            print("  /    ")
+
+        elif ATTEMPTS == 4:
+            print("   O   ")
+            print("  /|\  ")
+            print("   |   ")
+
+        elif ATTEMPTS == 3:
+            print("   O   ")
+            print("  /|  ")
+            print("   |   ")
+
+
+        elif ATTEMPTS == 2:
+            print("   O   ")
+            print("   |   ")
+            print("   |   ")
+
+        elif ATTEMPTS == 1:
+            print("   O   ")
+
         print("Attempts left: " + str(ATTEMPTS))
 
-    ans = input("Type 'y' to start another game : ").casefold()
+    ans = input("\n\nWould you like to play again? (y/n) : ").casefold()
 
 print("THANK YOU FOR PLAYING, COME BACK AGAIN")
